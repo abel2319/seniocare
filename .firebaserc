@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "seniocare-929e1": {
+      "hosting": {
+        "seniocare": [
+          "seniocare-929e1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "seniocare-929e1"
+  }
+}

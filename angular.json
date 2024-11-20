@@ -77,6 +77,23 @@
           },
           "defaultConfiguration": "development"
         },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "seniocare:build:production",
+              "serveTarget": "seniocare:serve:production"
+            },
+            "development": {
+              "buildTarget": "seniocare:build:development",
+              "serveTarget": "seniocare:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
         },
