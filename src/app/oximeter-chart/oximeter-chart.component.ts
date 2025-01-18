@@ -90,13 +90,11 @@ export class OximeterChartComponent implements OnInit {
 
   private updateChart(bpm: number, ir: number, timestamp: string): void {
     const labels = this.lineChartData.labels as string[];
-    console.log(`BPM: ${bpm}, IR: ${ir}, Timestamp: ${timestamp}`);
     // Ajouter les nouvelles données
     this.lineChartData.datasets[0].data.push(bpm);
     this.lineChartData.datasets[1].data.push(ir/1000);
     labels.push(timestamp);
 
-    console.log(this.lineChartData);
     // Limiter à une heure de données (par exemple, 60 points)
     if (labels.length > 60) {
       labels.shift(); // Supprimer l'ancien horodatage
