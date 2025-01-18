@@ -27,7 +27,6 @@
 }
 
 .bouton-container {
-    width: ;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -59,4 +58,44 @@
 
 .sp4 {
     color: #ff0000;
+}
+
+@media screen and (max-width: 800px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .map-container {
+        height: 300px;
+        width: 100%;
+    }
+
+    .chart-container {
+        height: 300px;
+        width: 100%;
+    }
+
+    .accelerometer-data-container {
+        height: 300px;
+        width: 100%;
+    }
+
+    .bouton-container {
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0px;
+    }
+
+    .left-side{
+        margin-right: 0px;
+    }
+
+    .title {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
 }
