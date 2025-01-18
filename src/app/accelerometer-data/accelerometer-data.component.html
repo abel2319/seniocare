@@ -1,0 +1,23 @@
+<div>
+    <h2>Données de l'accéléromètre</h2>
+    <table>
+      <tr>
+        <th>Ax</th>
+        <th>Ay</th>
+        <th>Az</th>
+      </tr>
+      <tr>
+        <td>{{ accelerometerData?.acc.x }}</td>
+        <td>{{ accelerometerData?.acc.y }}</td>
+        <td>{{ accelerometerData?.acc.z }}</td>
+      </tr>
+    </table>
+  
+    <h2 [style.color]="isFallDetected ? 'red' : 'green'">
+      {{ isFallDetected ? 'Chute détectée !' : 'Aucune chute détectée' }}
+    </h2>
+    <h3>
+        Acceleratiton : <span [style.color]="isFallDetected ? 'red' : 'green'">{{ magnitude }} m^2/s </span>
+    </h3>
+</div>
+  

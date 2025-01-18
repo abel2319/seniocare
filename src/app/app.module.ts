@@ -6,10 +6,19 @@ import { AppComponent } from './app.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { MapComponent } from './map/map.component';
+import { OximeterChartComponent } from './oximeter-chart/oximeter-chart.component';
+import { AccelerometerComponent } from './accelerometer-data/accelerometer-data.component';
+import { BoutonComponent } from './bouton/bouton.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapComponent,
+    OximeterChartComponent,
+    AccelerometerComponent,
+    BoutonComponent
   ],
   imports: [
     BrowserModule,

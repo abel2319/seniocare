@@ -1,0 +1,60 @@
+.main{
+    background-color: #ffffff;
+}
+
+.content{
+    display: flex;
+    margin-top: 30px;
+    justify-self: center;
+}
+
+.map-container {
+    height: 500px;
+    width: 1000px;
+}
+
+.chart-container {
+    width: 1000px;
+    height: 500px;
+    border: 1px solid rgb(236, 234, 234);
+}
+
+.accelerometer-data-container {
+    width: 1000px;
+    height: 500px;
+}
+
+.bouton-container {
+    width: 500px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 70px;
+}
+
+.left-side{
+    margin-right: 20px;
+}
+
+.title {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sp1 {
+    color: #007bff;
+}
+
+.sp2 {
+    color: #fa7203;
+}
+
+.sp3 {
+    color: #b6ca04;
+}
+
+.sp4 {
+    color: #ff0000;
+}
