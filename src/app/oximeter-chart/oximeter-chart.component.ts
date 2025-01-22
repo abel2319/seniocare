@@ -34,6 +34,17 @@ export class OximeterChartComponent implements OnInit {
         pointHoverBorderColor: 'rgba(255,99,132,1)',
         fill: false,
       },
+      {
+        data: [], // Données de l'IR
+        label: 'Température (°C)',
+        backgroundColor: 'rgba(99, 255, 125, 0.2)',
+        borderColor: 'rgba(99, 255, 99, 1)',
+        pointBackgroundColor: 'rgba(99, 255, 99,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(99, 255, 99,1)',
+        fill: false,
+      },
     ],
     labels: [], // Horodatages
   };
@@ -49,6 +60,10 @@ export class OximeterChartComponent implements OnInit {
     },
   };
 
+  temp: number = 0;
+  bpm: number = 0;
+  ir: number = 0;
+
   public lineChartType: ChartType = 'line';
 
   private database = inject(Database); // Remplacez par votre méthode d'injection
@@ -62,7 +77,36 @@ export class OximeterChartComponent implements OnInit {
   }
 
   private fetchOximeterData(): void {
-    const oximeterRef = ref(this.database, 'Oximeter');
+    const documentNames = ['Accelerometre','Oximeter'];
+    documentNames.forEach((docName) => {
+      const dataRef = ref(this.database, docName);
+      onValue(dataRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          if (docName === 'Accelerometre') {
+            this.temp = data.temp;
+          } else {
+            this.bpm = data.BPM;
+            this.ir = data.IR;
+          }
+          const timestamp = new Date().toLocaleTimeString(); // Heure actuelle
+          
+          if (this.chart) {
+            this.chart.destroy();
+          }
+
+          this.updateChart(this.bpm, this.ir, timestamp, this.temp);
+          this.chart = new Chart('oximeter-chart', {
+            type: this.lineChartType,
+            data: this.lineChartData,
+            options: this.lineChartOptions,
+          });
+        }
+      });
+      
+    });
+
+    /*const oximeterRef = ref(this.database, 'Oximeter');
 
     onValue(oximeterRef, (snapshot) => {
       const data = snapshot.val();
@@ -84,22 +128,24 @@ export class OximeterChartComponent implements OnInit {
         });
       }
 
-    });
+    });*/
     
   }
 
-  private updateChart(bpm: number, ir: number, timestamp: string): void {
+  private updateChart(bpm: number, ir: number, timestamp: string, temp: number): void {
     const labels = this.lineChartData.labels as string[];
     // Ajouter les nouvelles données
     this.lineChartData.datasets[0].data.push(bpm);
-    this.lineChartData.datasets[1].data.push(ir/1000);
+    this.lineChartData.datasets[1].data.push(ir/10);
+    this.lineChartData.datasets[2].data.push(temp);
     labels.push(timestamp);
 
     // Limiter à une heure de données (par exemple, 60 points)
-    if (labels.length > 60) {
+    if (labels.length > 30) {
       labels.shift(); // Supprimer l'ancien horodatage
       this.lineChartData.datasets[0].data.shift(); // Supprimer l'ancienne valeur BPM
       this.lineChartData.datasets[1].data.shift(); // Supprimer l'ancienne valeur IR
+      this.lineChartData.datasets[2].data.shift();
     }
   }
 }

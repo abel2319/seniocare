@@ -5,7 +5,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { inject } from '@angular/core';
 import { Database, onValue, ref, set } from '@angular/fire/database';
- 
+
+
 interface Valeur {
   data: any;
   documentName: string; // Propriété ajoutée ici

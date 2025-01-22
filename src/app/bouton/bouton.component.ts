@@ -16,7 +16,7 @@ export class BoutonComponent implements OnInit {
     onValue(buttonRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        this.boutonData = data===1 ? false : true;
+        this.boutonData = data===1 ? true : false;
         console.log('Données du bouton:', data);
       }
     });

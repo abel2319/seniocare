@@ -17,6 +17,9 @@
       {{ isFallDetected ? 'Chute détectée !' : 'Aucune chute détectée' }}
     </h2>
     <h3>
+      Temperature Corporelle: <span [style.color]="isFallDetected ? 'red' : 'green'">{{ temp }} °C </span>
+    </h3>
+    <h3>
         Acceleratiton : <span [style.color]="isFallDetected ? 'red' : 'green'">{{ magnitude }} m^2/s </span>
     </h3>
 </div>

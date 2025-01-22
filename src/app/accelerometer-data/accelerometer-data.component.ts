@@ -11,6 +11,7 @@ export class AccelerometerComponent implements OnInit {
   isFallDetected: boolean = false;
   threshold: number = 20; // Définir un seuil pour détecter une chute
   magnitude: number = 0;
+  temp: number = 0;
 
   constructor() {}
   private database = inject(Database);
@@ -20,16 +21,18 @@ export class AccelerometerComponent implements OnInit {
   }
 
   private fetchAccelerometerData(): void {
-      const accelerometerRef = ref(this.database, 'Accelerometre');
-  
-      onValue(accelerometerRef, (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          this.accelerometerData = data;
-          this.checkForFall(data.acc); 
-        }
-      });
-    }
+    
+    const accelerometerRef = ref(this.database, 'Accelerometre');
+
+    onValue(accelerometerRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        this.accelerometerData = data;
+        this.temp = data.temp;
+        this.checkForFall(data.acc); 
+      }
+    });
+  }
 
   checkForFall(acc: { x: number; y: number; z: number }): void {
     // Calculer la magnitude de l'accélération
