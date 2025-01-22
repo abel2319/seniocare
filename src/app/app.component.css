@@ -41,7 +41,16 @@
 .title {
     font-size: 4rem;
     margin-bottom: 0px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imga {
+    margin-left: 30px;
+}
+.imga img {
+    height: 150px;
 }
 
 .sp1 {
@@ -95,7 +104,16 @@
     .title {
         font-size: 3rem;
         margin-bottom: 0px;
-        text-align: center;
+        display: flex;
+        flex-direction: column;
     }
+
+    .imga {
+        margin-left: 0px;
+    }
+    .imga img {
+        height: 100px;
+    }
+    
     
 }

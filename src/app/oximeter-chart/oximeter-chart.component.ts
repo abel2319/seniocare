@@ -136,6 +136,9 @@ export class OximeterChartComponent implements OnInit {
     const labels = this.lineChartData.labels as string[];
     // Ajouter les nouvelles données
     this.lineChartData.datasets[0].data.push(bpm);
+    if (ir > 1000) {
+      ir = ir/100;
+    }
     this.lineChartData.datasets[1].data.push(ir/10);
     this.lineChartData.datasets[2].data.push(temp);
     labels.push(timestamp);
